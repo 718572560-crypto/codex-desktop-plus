@@ -48,7 +48,7 @@ struct LauncherView: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Button("赞助支持") { model.openSponsor() }
+            Button("AMGG API 赞助支持") { model.openSponsor() }
                 .buttonStyle(.plain)
                 .font(.system(size: 11))
                 .foregroundStyle(.secondary)

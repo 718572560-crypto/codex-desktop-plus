@@ -46,12 +46,12 @@ chmod 755 "$HELPER"
   "$TARGET_APP" \
   "$STAGED_APP" \
   "$UPDATE_ROOT" \
-  0.8.1
+  0.8.2
 
 test -d "$TARGET_APP"
 test -z "$(find "$TARGET_PARENT" -maxdepth 1 -name '.CodexZhLauncher-update-backup-*' -print -quit)"
 codesign --verify --deep --strict "$TARGET_APP"
 VERSION="$(plutil -extract CFBundleShortVersionString raw -o - "$TARGET_APP/Contents/Info.plist")"
-test "$VERSION" = "0.8.1"
+test "$VERSION" = "0.8.2"
 test ! -e "$UPDATE_ROOT"
 echo "macos_updater=ok arch=$ARCH"

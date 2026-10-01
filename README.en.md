@@ -4,7 +4,7 @@ English | [简体中文](README.md)
 
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-5B8DEF)
 ![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-6D7280)
-![Version](https://img.shields.io/badge/version-v0.8.1-C4B5FD)
+![Version](https://img.shields.io/badge/version-v0.8.2-C4B5FD)
 ![License](https://img.shields.io/badge/license-MIT-31B77A)
 
 **Codex Desktop Chinese Localization Enhancer** is a Windows and macOS launcher for enabling the Chinese UI and translating native Electron menus in Codex Desktop. It supports Microsoft Store, portable, and macOS App Bundle installations, verified process shutdown, and automatic restart in Chinese mode.
@@ -88,7 +88,7 @@ The Windows application uses WPF and the .NET Framework 4.8 compiler. The macOS 
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-windows-installer.ps1 -Version 0.8.1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-windows-installer.ps1 -Version 0.8.2
 powershell -NoProfile -ExecutionPolicy Bypass -File .\test-shutdown.ps1
 .\dist\Codex-Zh-Launcher-Windows-x64.exe --self-test
 .\dist\Codex-Zh-Launcher-Windows-x64.exe --diagnostics

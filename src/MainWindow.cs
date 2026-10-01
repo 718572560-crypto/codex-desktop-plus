@@ -163,7 +163,7 @@ namespace CodexZhLauncher
                 Margin = new Thickness(0, 0, 15, 0),
                 VerticalAlignment = VerticalAlignment.Center
             };
-            var sponsorLink = new Hyperlink(new Run("赞助支持"))
+            var sponsorLink = new Hyperlink(new Run("AMGG API 赞助支持"))
             {
                 Foreground = TextSecondary,
                 TextDecorations = null,

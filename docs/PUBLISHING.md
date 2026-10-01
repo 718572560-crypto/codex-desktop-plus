@@ -74,7 +74,7 @@ git push -u origin main
 
 ## 截图与 Social Preview
 
-建议使用 `0.8.1` 的 Windows 与 macOS 实际窗口截图，并确保截图中没有用户名、项目名称、路径、任务内容或其他个人信息。
+建议使用 `0.8.2` 的 Windows 与 macOS 实际窗口截图，并确保截图中没有用户名、项目名称、路径、任务内容或其他个人信息。
 
 推荐文件：
 
@@ -105,8 +105,8 @@ docs/images/codex-desktop-zh-log.png
 确认 `main` 分支自动化通过后创建并推送版本标签：
 
 ```powershell
-git tag -a v0.8.1 -m "Codex 汉化增强工具 v0.8.1"
-git push origin v0.8.1
+git tag -a v0.8.2 -m "Codex 汉化增强工具 v0.8.2"
+git push origin v0.8.2
 ```
 
 `.github/workflows/release.yml` 会重新构建和测试，并创建 GitHub Release，附加：

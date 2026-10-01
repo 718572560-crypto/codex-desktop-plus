@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.8.2] - 2026-10-01
+
+- 主界面和关于页赞助入口统一显示为“AMGG API 赞助支持”。
+- 赞助链接继续指向 `https://amggapi.cc/`。
+
 ## [0.8.1] - 2026-10-01
 
 - 增加 Windows 免管理员安装包 `Codex-Zh-Launcher-Windows-x64-Setup.exe`。

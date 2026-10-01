@@ -11,7 +11,7 @@ struct LogEntry: Identifiable {
 
 @MainActor
 final class LauncherModel: ObservableObject {
-    static let version = "0.8.1"
+    static let version = "0.8.2"
     static let sponsorURL = URL(string: "https://amggapi.cc/")!
 
     @Published private(set) var install: CodexInstall?

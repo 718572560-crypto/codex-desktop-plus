@@ -125,7 +125,7 @@ namespace CodexZhLauncher
             var footer = new Grid();
             footer.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             footer.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            var sponsor = BuildTextLink("赞助支持", AppInfo.SponsorUrl);
+            var sponsor = BuildTextLink("AMGG API 赞助支持", AppInfo.SponsorUrl);
             sponsor.VerticalAlignment = VerticalAlignment.Center;
             footer.Children.Add(sponsor);
 

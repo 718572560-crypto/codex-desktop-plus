@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ARCH="${1:-$(uname -m)}"
-VERSION="${RELEASE_VERSION:-0.8.1}"
+VERSION="${RELEASE_VERSION:-0.8.2}"
 case "$ARCH" in
   arm64) ASSET="Codex-Zh-Launcher-macOS-arm64.zip"; DMG_ASSET="Codex-Zh-Launcher-macOS-arm64.dmg" ;;
   x86_64|x64) ARCH="x86_64"; ASSET="Codex-Zh-Launcher-macOS-x64.zip"; DMG_ASSET="Codex-Zh-Launcher-macOS-x64.dmg" ;;
