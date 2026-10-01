@@ -13,7 +13,7 @@ body:
     id: launcher-version
     attributes:
       label: 工具版本
-      placeholder: 例如 0.8.0
+      placeholder: 例如 0.8.1
     validations:
       required: true
 

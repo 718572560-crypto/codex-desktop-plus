@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1] - 2026-10-01
+
+- 增加 Windows 免管理员安装包 `Codex-Zh-Launcher-Windows-x64-Setup.exe`。
+- 增加 Apple Silicon 和 Intel Mac 的 DMG 安装包。
+- 保留 EXE/ZIP 便携版，避免影响自动更新流程。
+- Release 校验文件覆盖全部安装包和便携版资产。
+
 ## [0.8.0] - 2026-09-30
 
 - 发布到 `718572560-crypto/codex-desktop-plus` 独立仓库。

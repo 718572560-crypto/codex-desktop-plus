@@ -4,14 +4,14 @@
 
 ![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-5B8DEF)
 ![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-6D7280)
-![Version](https://img.shields.io/badge/version-v0.8.0-C4B5FD)
+![Version](https://img.shields.io/badge/version-v0.8.1-C4B5FD)
 ![License](https://img.shields.io/badge/license-MIT-31B77A)
 
 **Codex Desktop 中文汉化增强工具**是一款面向 Windows 和 macOS 的 Codex 汉化启动器。它支持 Microsoft Store、便携版和 macOS App Bundle，可启用中文界面、翻译 Electron 原生菜单，并在 Codex 已运行时安全关闭后以中文模式重新启动。
 
 项目不解包、不替换 `app.asar`，不修改 Microsoft Store 安装目录，也不读取 Codex 账号、令牌或项目文件。
 
-当前版本：`0.8.0`
+当前版本：`0.8.1`
 
 ## 主要功能
 
@@ -31,15 +31,18 @@
 
 ## 下载与使用
 
-从 [GitHub Releases](../../releases/latest) 下载对应系统的文件和 `SHA256SUMS.txt`：
+从 [GitHub Releases](../../releases/latest) 下载对应系统的安装包和 `SHA256SUMS.txt`：
 
 | 系统 | 下载文件 |
 |---|---|
-| Windows 10/11 x64 | `Codex-Zh-Launcher-Windows-x64.exe` |
-| Apple Silicon（M1/M2/M3/M4） | `Codex-Zh-Launcher-macOS-arm64.zip` |
-| Intel Mac | `Codex-Zh-Launcher-macOS-x64.zip` |
+| Windows 10/11 x64 安装版 | `Codex-Zh-Launcher-Windows-x64-Setup.exe` |
+| Windows 10/11 x64 便携版 | `Codex-Zh-Launcher-Windows-x64.exe` |
+| Apple Silicon（M1/M2/M3/M4）安装版 | `Codex-Zh-Launcher-macOS-arm64.dmg` |
+| Apple Silicon（M1/M2/M3/M4）便携版 | `Codex-Zh-Launcher-macOS-arm64.zip` |
+| Intel Mac 安装版 | `Codex-Zh-Launcher-macOS-x64.dmg` |
+| Intel Mac 便携版 | `Codex-Zh-Launcher-macOS-x64.zip` |
 
-Windows 直接运行 EXE。macOS 解压 ZIP 后，将应用拖到“应用程序”，首次启动请右键应用并选择“打开”。若仍被阻止，前往“系统设置 > 隐私与安全性”，在安全性区域为该应用选择“仍要打开”，确认来源后再继续。不要启用“任何来源”，也不要关闭 Gatekeeper。
+Windows 推荐运行 Setup 安装包，安装到当前用户目录，不需要管理员权限；不想安装时也可以直接运行便携版 EXE。macOS 推荐打开 DMG 并将应用拖到“应用程序”；也可以解压 ZIP 后手动移动应用。首次启动请右键应用并选择“打开”。若仍被阻止，前往“系统设置 > 隐私与安全性”，在安全性区域为该应用选择“仍要打开”，确认来源后再继续。不要启用“任何来源”，也不要关闭 Gatekeeper。
 
 1. 运行对应平台的“Codex 汉化增强工具”。
 2. 等待工具自动检测 Codex Desktop。
@@ -99,6 +102,7 @@ Windows 项目使用系统自带的 .NET Framework 4.8 C# 编译器和 WPF。mac
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-windows-installer.ps1 -Version 0.8.1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\test-shutdown.ps1
 ```
 
@@ -124,6 +128,8 @@ bash scripts/build-macos.sh arm64   # Apple Silicon
 bash scripts/build-macos.sh x86_64  # Intel
 ```
 
+macOS 构建会同时生成 ZIP 便携版和 DMG 安装包；Windows 安装包需要安装 Inno Setup 6 后运行上面的安装包构建脚本。
+
 打包后的 macOS 应用也提供相同的 CLI：
 
 ```bash
@@ -143,6 +149,7 @@ tests/
 macos/
 shared/
 scripts/
+installer/
 build.ps1
 test-shutdown.ps1
 ```
@@ -236,6 +243,6 @@ macOS ZIP 使用免费的 ad-hoc 签名，没有 Apple Developer ID 签名和公
 
 ## 许可证与声明
 
-项目采用 [MIT License](LICENSE)，实现为独立编写，不包含 CodexPlusPlus 源码，也不分发 Codex Desktop 安装包。
+项目采用 [MIT License](LICENSE)，实现为独立编写，不包含 CodexPlusPlus 源码，也不分发 Codex Desktop 官方安装包。
 
 Codex、OpenAI 和相关商标归其权利人所有。本项目不是 OpenAI、Microsoft 或 Codex 官方产品。

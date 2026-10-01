@@ -3,9 +3,10 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ARCH="${1:-$(uname -m)}"
+VERSION="${RELEASE_VERSION:-0.8.1}"
 case "$ARCH" in
-  arm64) ASSET="Codex-Zh-Launcher-macOS-arm64.zip" ;;
-  x86_64|x64) ARCH="x86_64"; ASSET="Codex-Zh-Launcher-macOS-x64.zip" ;;
+  arm64) ASSET="Codex-Zh-Launcher-macOS-arm64.zip"; DMG_ASSET="Codex-Zh-Launcher-macOS-arm64.dmg" ;;
+  x86_64|x64) ARCH="x86_64"; ASSET="Codex-Zh-Launcher-macOS-x64.zip"; DMG_ASSET="Codex-Zh-Launcher-macOS-x64.dmg" ;;
   *) echo "Unsupported architecture: $ARCH" >&2; exit 2 ;;
 esac
 
@@ -21,7 +22,7 @@ BUILD="$(swift build -c release --arch "$ARCH" --show-bin-path)"
 cp "$BUILD/CodexZhLauncherMac" "$CONTENTS/MacOS/CodexZhLauncherMac"
 cp "$ROOT/shared/i18n-bootstrap.js" "$ROOT/shared/locale-script.js" "$ROOT/shared/menu-script.js" "$ROOT/shared/menu-translations.json" "$CONTENTS/Resources/shared/"
 
-cat > "$CONTENTS/Info.plist" <<'PLIST'
+cat > "$CONTENTS/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
@@ -33,8 +34,8 @@ cat > "$CONTENTS/Info.plist" <<'PLIST'
   <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
   <key>CFBundleName</key><string>Codex 汉化增强工具</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>0.8.0</string>
-  <key>CFBundleVersion</key><string>0.8.0</string>
+  <key>CFBundleShortVersionString</key><string>$VERSION</string>
+  <key>CFBundleVersion</key><string>$VERSION</string>
   <key>LSMinimumSystemVersion</key><string>13.0</string>
   <key>NSHighResolutionCapable</key><true/>
 </dict></plist>
@@ -59,4 +60,14 @@ trap 'rm -rf "$TMP_CHECK"' EXIT
 ditto -x -k "$ROOT/dist/$ASSET" "$TMP_CHECK"
 test -x "$TMP_CHECK/Codex 汉化增强工具.app/Contents/MacOS/CodexZhLauncherMac"
 shasum -a 256 "$ROOT/dist/$ASSET" | sed "s#  .*#  $ASSET#" > "$ROOT/dist/$ASSET.sha256"
+DMG_ROOT="$STAGE/dmg-root"
+rm -rf "$DMG_ROOT"
+mkdir -p "$DMG_ROOT"
+ditto "$APP" "$DMG_ROOT/Codex 汉化增强工具.app"
+ln -s /Applications "$DMG_ROOT/Applications"
+rm -f "$ROOT/dist/$DMG_ASSET"
+hdiutil create -volname "Codex Desktop Plus" -srcfolder "$DMG_ROOT" -ov -format UDZO "$ROOT/dist/$DMG_ASSET"
+hdiutil verify "$ROOT/dist/$DMG_ASSET"
+shasum -a 256 "$ROOT/dist/$DMG_ASSET" | sed "s#  .*#  $DMG_ASSET#" > "$ROOT/dist/$DMG_ASSET.sha256"
 echo "Built $ROOT/dist/$ASSET"
+echo "Built $ROOT/dist/$DMG_ASSET"

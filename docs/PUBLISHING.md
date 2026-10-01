@@ -41,7 +41,7 @@ git status --short
 git check-ignore -v dist obj
 ```
 
-上传 `src/`、`tests/`、`macos/`、`shared/`、`scripts/`、构建和测试脚本、`.github/`、文档、许可证与第三方声明。不要上传 `dist/`、`obj/`、`macos/.build/`、`macos/.artifacts/`、日志、Codex 安装文件、账号数据或用户项目内容。
+上传 `src/`、`tests/`、`macos/`、`shared/`、`scripts/`、`installer/`、构建和测试脚本、`.github/`、文档、许可证与第三方声明。不要上传 `dist/`、`obj/`、`macos/.build/`、`macos/.artifacts/`、日志、Codex 安装文件、账号数据或用户项目内容。
 
 ## 创建仓库
 
@@ -52,7 +52,7 @@ git init
 git branch -M main
 git add .
 git status
-git commit -m "Initial release: Codex Chinese localization enhancer v0.8.0"
+git commit -m "Codex Chinese localization enhancer v0.8.1"
 git remote add origin https://github.com/718572560-crypto/codex-desktop-plus.git
 git push -u origin main
 ```
@@ -74,7 +74,7 @@ git push -u origin main
 
 ## 截图与 Social Preview
 
-建议使用 `0.8.0` 的 Windows 与 macOS 实际窗口截图，并确保截图中没有用户名、项目名称、路径、任务内容或其他个人信息。
+建议使用 `0.8.1` 的 Windows 与 macOS 实际窗口截图，并确保截图中没有用户名、项目名称、路径、任务内容或其他个人信息。
 
 推荐文件：
 
@@ -94,8 +94,9 @@ docs/images/codex-desktop-zh-log.png
 2. `--self-test`
 3. `--diagnostics`
 4. 隔离关闭测试
-5. Swift 单元测试、两个 macOS 架构构建、ad-hoc 签名与 ZIP 检查
-6. 上传各平台构建 Artifact
+5. Swift 单元测试、两个 macOS 架构构建、ad-hoc 签名、ZIP 与 DMG 检查
+6. 生成 Windows Setup.exe 和 macOS DMG 安装包
+7. 上传各平台构建 Artifact
 
 这些测试不会关闭用户真实运行的 Codex。
 
@@ -104,16 +105,19 @@ docs/images/codex-desktop-zh-log.png
 确认 `main` 分支自动化通过后创建并推送版本标签：
 
 ```powershell
-git tag -a v0.8.0 -m "Codex 汉化增强工具 v0.8.0"
-git push origin v0.8.0
+git tag -a v0.8.1 -m "Codex 汉化增强工具 v0.8.1"
+git push origin v0.8.1
 ```
 
 `.github/workflows/release.yml` 会重新构建和测试，并创建 GitHub Release，附加：
 
 ```text
 Codex-Zh-Launcher-Windows-x64.exe
+Codex-Zh-Launcher-Windows-x64-Setup.exe
 Codex-Zh-Launcher-macOS-arm64.zip
+Codex-Zh-Launcher-macOS-arm64.dmg
 Codex-Zh-Launcher-macOS-x64.zip
+Codex-Zh-Launcher-macOS-x64.dmg
 SHA256SUMS.txt
 ```
 
@@ -128,6 +132,7 @@ SHA256SUMS.txt
 - 菜单翻译已在当前 Codex 版本验证
 - 截图不包含个人或项目数据
 - Release 文件 SHA-256 与 `SHA256SUMS.txt` 一致
+- Windows Setup.exe 和 macOS DMG 均可安装或复制到目标应用目录
 - README 的兼容性和已知限制准确
 - 明确标注非 OpenAI 官方项目
 - macOS 未关闭 Gatekeeper、未清除 quarantine、未修改 Codex.app
